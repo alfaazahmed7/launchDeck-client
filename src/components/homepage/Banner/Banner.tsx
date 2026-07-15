@@ -6,18 +6,8 @@ import { ArrowUpRight, Compass, Rocket } from "lucide-react";
 
 export default function Banner() {
     return (
-        <section className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
-            {/* 1. Background Visuals: Tech Grid & Glowing Gradient Blobs */}
-            <div className="absolute inset-0 z-0">
-                {/* Subtle grid layout */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#33415510_1px,transparent_1px),linear-gradient(to_bottom,#33415510_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-
-                {/* Glowing Accent Blobs */}
-                <div className="absolute -top-40 left-0 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[120px] lg:-top-60 lg:h-[600px] lg:w-[600px]" />
-                <div className="absolute bottom-10 right-0 h-[400px] w-[400px] rounded-full bg-emerald-500/10 blur-[120px] lg:bottom-0 lg:h-[600px] lg:w-[600px]" />
-            </div>
-
-            <div className="relative z-10 mx-auto max-w-7xl">
+        <section className="relative flex min-h-[calc(100vh-80px)] items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
 
                     {/* Left: Text Content Area */}
@@ -64,7 +54,7 @@ export default function Banner() {
                         </div>
 
                         {/* Quick Tech Stats */}
-                        <div className="mt-12 grid grid-cols-3 gap-4 border-t border-slate-800/80 pt-8 text-left max-w-lg mx-auto lg:mx-0">
+                        <div className="mt-12 grid grid-cols-3 gap-4 border-t border-slate-800/85 pt-8 text-left max-w-lg mx-auto lg:mx-0">
                             <div>
                                 <p className="text-2xl font-bold text-white">250+</p>
                                 <p className="text-xs text-slate-500 uppercase tracking-wider mt-1">Projects Live</p>
@@ -83,10 +73,10 @@ export default function Banner() {
                     {/* Right: Elegant Mockup-Style Hero Illustration */}
                     <div className="relative flex justify-center lg:col-span-5">
                         <div className="relative w-full max-w-[450px]">
-                            {/* Outer Decorative Gradient Border (Card Backdrop Effect) */}
+                            {/* Outer Decorative Gradient Border */}
                             <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-blue-600 to-emerald-500 opacity-30 blur-lg" />
 
-                            {/* Hero "Illustration" Card */}
+                            {/* Hero Card */}
                             <div className="relative rounded-2xl border border-slate-800 bg-slate-900/95 p-6 shadow-2xl backdrop-blur-xl">
                                 {/* Simulated App Header */}
                                 <div className="flex items-center justify-between pb-4 border-b border-slate-800">
@@ -100,8 +90,7 @@ export default function Banner() {
 
                                 {/* Card Main Body Graphic */}
                                 <div className="mt-6 rounded-xl bg-slate-950 p-4 border border-slate-800/50">
-                                    <div className="h-28 w-full rounded-lg bg-gradient-to-br from-blue-500/20 to-emerald-500/20 flex items-center justify-center relative overflow-hidden group">
-                                        {/* Simulated project grid display */}
+                                    <div className="h-28 w-full rounded-lg bg-gradient-to-br from-blue-500/20 to-emerald-500/20 flex items-center justify-center relative overflow-hidden">
                                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900/10 via-slate-950/40 to-slate-950" />
                                         <Rocket size={44} className="text-emerald-400 relative z-10 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
                                     </div>
@@ -112,7 +101,7 @@ export default function Banner() {
                                         <div className="h-3 w-5/6 rounded-md bg-slate-800/50" />
                                     </div>
 
-                                    {/* Funding Bar Simulation */}
+                                    {/* Funding Bar */}
                                     <div className="mt-6">
                                         <div className="flex justify-between text-xs font-mono text-slate-400 mb-1.5">
                                             <span>Fund Goal</span>
