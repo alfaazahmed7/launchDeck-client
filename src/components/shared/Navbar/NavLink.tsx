@@ -25,7 +25,7 @@ export default function NavLink({ href, label, onClick }: NavLinkProps) {
             {label}
             {/* Active Line Indicator */}
             {isActive && (
-                <span className="absolute bottom-0 left-0 h-[2px] w-full bg-emerald-400 transition-all duration-300" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-6 h-[2px]  bg-emerald-400 rounded-full" />
             )}
         </Link>
     );
