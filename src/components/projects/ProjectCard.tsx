@@ -101,7 +101,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 {/* View Details Button Layout (Anchored to Card Bottom via flex-1 mt-auto) */}
                 <div className="mt-auto pt-4">
                     <Link
-                        href={`/projects/${project.id}`}
+                        href={`/projects/${project._id}`}
                         className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-slate-950 border border-slate-800 py-2.5 text-xs font-bold text-slate-300 transition-all duration-200 hover:border-emerald-500/50 hover:bg-emerald-500 hover:text-slate-950"
                     >
                         View Details

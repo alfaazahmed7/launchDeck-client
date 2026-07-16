@@ -1,8 +1,6 @@
-import { getProjects } from "@/lib/api/getProjects";
-
 const FeatruedProjects = async () => {
-    const projects = await getProjects();
-    console.log(projects, 'projects');
+    // const projects = await getProjects();
+    // console.log(projects, 'projects');
 
     return (
         <div>

@@ -2,6 +2,7 @@ import React from "react";
 import ProjectContainer from "@/components/projects/ProjectContainer";
 import { Project } from "@/types/project";
 import { serverFetch } from "@/lib/core/server";
+import { getProjects } from "@/lib/api/projects";
 
 interface PageProps {
     searchParams: Promise<{
@@ -25,7 +26,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
         const queryString = new URLSearchParams(params as Record<string, string>).toString();
 
         // Pass the query string to your backend route (e.g., /api/get-projects?search=Umami&sort=newest)
-        projects = await serverFetch(`/api/get-projects?${queryString}`);
+        projects = await getProjects(queryString);
     }
     catch (err) {
         error = "Failed to load projects. Please try again later.";
