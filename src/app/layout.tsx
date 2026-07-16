@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/shared/Navbar/Navbar";
+import Navbar from "@/components/shared/navbar/Navbar";
 
 const FigtreeFont = Figtree({
   subsets: ["latin"],
