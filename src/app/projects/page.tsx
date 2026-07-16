@@ -1,16 +1,31 @@
 import React from "react";
 import ProjectContainer from "@/components/projects/ProjectContainer";
 import { Project } from "@/types/project";
-import { getProjects } from "@/lib/api/getProjects";
+import { serverFetch } from "@/lib/core/server";
 
-export default async function ProjectsPage() {
+interface PageProps {
+    searchParams: Promise<{
+        search?: string;
+        category?: string;
+        difficulty?: string;
+        status?: string;
+        tech?: string;
+        sort?: string;
+        page?: string;
+    }>;
+}
+
+export default async function ProjectsPage({ searchParams }: PageProps) {
+    const params = await searchParams;
     let projects: Project[] = [];
     let error: string | null = null;
 
     try {
-        // Calling your modular decoupled function wrapper directly
-        projects = await getProjects();
-        console.log(projects, 'projects');
+        // Build query string dynamically from active URL queries
+        const queryString = new URLSearchParams(params as Record<string, string>).toString();
+
+        // Pass the query string to your backend route (e.g., /api/get-projects?search=Umami&sort=newest)
+        projects = await serverFetch(`/api/get-projects?${queryString}`);
     }
     catch (err) {
         error = "Failed to load projects. Please try again later.";
