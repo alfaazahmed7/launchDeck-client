@@ -1,4 +1,5 @@
 import Banner from "@/components/homepage/Banner/Banner";
+import CallToAction from "@/components/homepage/CallToAction/CallToAction";
 import Categories from "@/components/homepage/Categories/Categories";
 import FAQ from "@/components/homepage/FAQ/FAQ";
 import FeatruedProjects from "@/components/homepage/featured-projects/FeatruedProjects";
@@ -14,6 +15,7 @@ export default function Home() {
       <WhyLaunchDeck />
       <PlatformStats />
       <FAQ />
+      <CallToAction />
     </div>
   );
 }
