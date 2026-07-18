@@ -18,7 +18,7 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 z-50 border-b border-slate-700 bg-slate-900 text-white shadow-md">
-            <div className="w-10/12 mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="md:w-11/12 lg:w-10/12 mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
 
                     {/* Left: Brand Logo */}
@@ -35,7 +35,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Center/Right: Desktop Navigation Links */}
-                    <div className="hidden md:flex md:items-center md:space-x-8">
+                    <div className="hidden lg:flex md:items-center md:space-x-8">
                         {navLinks.map((link) => (
                             <NavLink
                                 key={link.href}
