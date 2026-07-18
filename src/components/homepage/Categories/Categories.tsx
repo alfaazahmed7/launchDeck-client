@@ -21,7 +21,6 @@ const Categories = async () => {
     try {
         // Fetch all records on the server layer using your existing path strategy
         const allProjects: Project[] = await serverFetch("/api/projects/for=categories");
-        console.log(allProjects, 'allProjects');
 
         if (Array.isArray(allProjects)) {
             // Dynamically calculate document counts matching each target category name string
