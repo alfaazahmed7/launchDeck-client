@@ -1,7 +1,6 @@
 import React from "react";
 import ProjectContainer from "@/components/projects/ProjectContainer";
 import { Project } from "@/types/project";
-import { serverFetch } from "@/lib/core/server";
 import { getProjects } from "@/lib/api/projects";
 
 interface PageProps {

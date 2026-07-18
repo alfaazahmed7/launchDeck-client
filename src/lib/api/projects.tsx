@@ -4,7 +4,7 @@ import { serverFetch } from "../core/server";
 export const getProjects = async (
     queryString: string
 ): Promise<Project[]> => {
-    return serverFetch<Project[]>(`/api/projects${queryString}`);
+    return serverFetch<Project[]>(`/api/projects?${queryString}`);
 };
 
 export const getFeaturedProjects = async ()
