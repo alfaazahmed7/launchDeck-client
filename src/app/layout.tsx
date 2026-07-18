@@ -3,6 +3,7 @@ import { Figtree } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const FigtreeFont = Figtree({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <Toaster />
           <Footer />
         </div>
 

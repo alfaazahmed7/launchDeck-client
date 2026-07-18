@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Search } from "lucide-react";
 import NavLink from "./NavLink";
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -15,6 +18,17 @@ export default function Navbar() {
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
     ];
+
+    // User session
+    const userData = authClient.useSession();
+    const user = userData.data?.user;
+    const isPending = userData.isPending;
+
+    // Sign Out
+    const handleSignOut = async () => {
+        await authClient.signOut();
+        toast.success('You have successfully sign out');
+    }
 
     return (
         <nav className="sticky top-0 z-50 border-b border-slate-700 bg-slate-900 text-white shadow-md">
@@ -47,19 +61,57 @@ export default function Navbar() {
 
                     {/* Far Right: Desktop Actions & Auth */}
                     <div className="hidden md:flex md:items-center md:space-x-6">
-                        <Link
-                            href="/login"
-                            className="text-sm font-semibold text-slate-300 transition-colors duration-200 hover:text-emerald-400"
-                        >
-                            LOG IN
-                        </Link>
+                        {isPending ? (
+                            /* Clean loading state using an emerald accent spinner */
+                            <span className="loading loading-spinner loading-md text-emerald-400"></span>
+                        ) : user ? (
+                            <div className="flex items-center gap-4">
+                                {/* User Avatar with premium Emerald Ring highlight instead of generic neutral styles */}
+                                <div className="flex shrink-0">
+                                    <div className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-emerald-500/20 bg-slate-900 border border-slate-800">
+                                        {user.image ? (
+                                            <Image
+                                                src={user.image}
+                                                alt={user.name ?? "User avatar"}
+                                                width={36}
+                                                height={36}
+                                                className="object-cover h-full w-full"
+                                                referrerPolicy="no-referrer"
+                                            />
+                                        ) : (
+                                            <div className="flex h-full w-full items-center justify-center font-bold font-mono text-xs text-emerald-400">
+                                                {user.name?.charAt(0).toUpperCase() ?? "U"}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
 
-                        <Link
-                            href="/register"
-                            className="rounded-md bg-emerald-500 px-5 py-2.5 text-sm font-bold text-slate-900 transition-all duration-200 hover:bg-emerald-400 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)]"
-                        >
-                            REGISTER
-                        </Link>
+                                {/* Re-styled Sign Out Button matching the dark, border-accented aesthetic of details actions */}
+                                <button
+                                    onClick={handleSignOut}
+                                    className="rounded-xl bg-slate-950 border border-slate-800 px-4 py-2 text-xs font-bold text-slate-300 backdrop-blur-sm transition-all duration-200 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 cursor-pointer"
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
+                        ) : (
+                            /* Unauthenticated action buttons matching your layout button classes perfectly */
+                            <div className="flex items-center gap-4">
+                                <Link
+                                    href="/login"
+                                    className="text-xs font-bold tracking-wide text-slate-400 transition-colors duration-200 hover:text-emerald-400 uppercase"
+                                >
+                                    Log In
+                                </Link>
+
+                                <Link
+                                    href="/register"
+                                    className="rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-slate-950 transition-all duration-200 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] uppercase"
+                                >
+                                    Register
+                                </Link>
+                            </div>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button (Hamburger) */}
@@ -99,20 +151,57 @@ export default function Navbar() {
 
                     {/* Mobile Auth Buttons */}
                     <div className="space-y-2">
-                        <Link
-                            href="/login"
-                            onClick={() => setIsOpen(false)}
-                            className="block w-full text-center rounded-md border border-slate-700 px-3 py-2 text-base font-medium text-slate-300 hover:bg-slate-800"
-                        >
-                            Log In
-                        </Link>
-                        <Link
-                            href="/register"
-                            onClick={() => setIsOpen(false)}
-                            className="block w-full text-center rounded-md bg-emerald-500 px-3 py-2 text-base font-medium text-slate-900 hover:bg-emerald-400"
-                        >
-                            Register
-                        </Link>
+                        {isPending ? (
+                            /* Clean loading state using an emerald accent spinner */
+                            <span className="loading loading-spinner loading-md text-emerald-400"></span>
+                        ) : user ? (
+                            <div className="flex items-center gap-4">
+                                {/* User Avatar with premium Emerald Ring highlight instead of generic neutral styles */}
+                                <div className="flex shrink-0">
+                                    <div className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-emerald-500/20 bg-slate-900 border border-slate-800">
+                                        {user.image ? (
+                                            <Image
+                                                src={user.image}
+                                                alt={user.name ?? "User avatar"}
+                                                width={36}
+                                                height={36}
+                                                className="object-cover h-full w-full"
+                                                referrerPolicy="no-referrer"
+                                            />
+                                        ) : (
+                                            <div className="flex h-full w-full items-center justify-center font-bold font-mono text-xs text-emerald-400">
+                                                {user.name?.charAt(0).toUpperCase() ?? "U"}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Re-styled Sign Out Button matching the dark, border-accented aesthetic of details actions */}
+                                <button
+                                    onClick={handleSignOut}
+                                    className="rounded-xl bg-slate-950 border border-slate-800 px-4 py-2 text-xs font-bold text-slate-300 backdrop-blur-sm transition-all duration-200 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 cursor-pointer"
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
+                        ) : (
+                            /* Unauthenticated action buttons matching your layout button classes perfectly */
+                            <div className="flex items-center gap-4">
+                                <Link
+                                    href="/login"
+                                    className="text-xs font-bold tracking-wide text-slate-400 transition-colors duration-200 hover:text-emerald-400 uppercase"
+                                >
+                                    Log In
+                                </Link>
+
+                                <Link
+                                    href="/register"
+                                    className="rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-slate-950 transition-all duration-200 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] uppercase"
+                                >
+                                    Register
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
