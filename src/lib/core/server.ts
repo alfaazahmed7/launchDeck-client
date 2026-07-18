@@ -1,14 +1,10 @@
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
 
 export const serverFetch = async <T>(path: string): Promise<T> => {
-    const url = `${baseUrl}${path}`;
-
-    const res = await fetch(url);
+    const res = await fetch(`${baseUrl}${path}`);
 
     if (!res.ok) {
-        throw new Error(
-            `Fetch failed: ${res.status} ${res.statusText}\nURL: ${url}`
-        );
+        throw new Error("Failed to fetch data");
     }
 
     return res.json() as Promise<T>;

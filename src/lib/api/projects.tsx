@@ -7,6 +7,11 @@ export const getProjects = async (
     return serverFetch<Project[]>(`/api/projects${queryString}`);
 };
 
+export const getFeaturedProjects = async ()
+    : Promise<Project[]> => {
+    return serverFetch<Project[]>(`/api/projects/featured`);
+}
+
 export const getProjectById = async (
     projectId: string
 ): Promise<Project> => {
