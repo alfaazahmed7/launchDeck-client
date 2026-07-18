@@ -1,5 +1,6 @@
 import Banner from "@/components/homepage/Banner/Banner";
 import Categories from "@/components/homepage/Categories/Categories";
+import FAQ from "@/components/homepage/FAQ/FAQ";
 import FeatruedProjects from "@/components/homepage/featured-projects/FeatruedProjects";
 import PlatformStats from "@/components/homepage/PlatformStats/PlatformStats";
 import WhyLaunchDeck from "@/components/homepage/WhyLaunchDeck/WhyLaunchDeck";
@@ -12,6 +13,7 @@ export default function Home() {
       <Categories />
       <WhyLaunchDeck />
       <PlatformStats />
+      <FAQ />
     </div>
   );
 }
