@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, Terminal, Loader2, AlertCircle } from 'lucide-react';
 import { authClient } from '@/lib/auth-client';
 import { CgGoogle } from 'react-icons/cg';
-import { DiGithub } from 'react-icons/di';
 import toast from 'react-hot-toast';
+import { BsGithub } from 'react-icons/bs';
 
 export default function RegisterForm() {
     const router = useRouter();
@@ -72,6 +72,7 @@ export default function RegisterForm() {
             });
         } catch (err) {
             setError(`Failed to connect via ${provider}.`);
+            toast.error(`${provider} registration failed`);
         }
     };
 
@@ -151,16 +152,16 @@ export default function RegisterForm() {
                         <button
                             type="button"
                             onClick={() => handleSocialLogin('google')}
-                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900"
+                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900 cursor-pointer"
                         >
                             <CgGoogle size={14} className="text-red-400" /> Google
                         </button>
                         <button
                             type="button"
                             onClick={() => handleSocialLogin('github')}
-                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900"
+                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900 cursor-pointer"
                         >
-                            <DiGithub size={14} /> Github
+                            <BsGithub size={14} /> Github
                         </button>
                     </div>
 

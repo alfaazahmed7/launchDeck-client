@@ -65,6 +65,7 @@ export default function LoginForm() {
             });
         } catch (err) {
             setError(`Failed to connect authentication framework via ${provider}.`);
+            toast.error(`${provider} registration failed`);
         }
     };
 
@@ -138,14 +139,14 @@ export default function LoginForm() {
                         <button
                             type="button"
                             onClick={() => handleSocialLogin('google')}
-                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900"
+                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900 cursor-pointer"
                         >
                             <CgGoogle size={14} className="text-red-400" /> Google
                         </button>
                         <button
                             type="button"
                             onClick={() => handleSocialLogin('github')}
-                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900"
+                            className="flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2.5 text-xs font-bold text-slate-200 transition-all hover:border-slate-700 hover:bg-slate-900 cursor-pointer"
                         >
                             <BsGithub size={14} /> Github
                         </button>

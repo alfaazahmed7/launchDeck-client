@@ -71,8 +71,8 @@ export default function Navbar() {
                                     <div className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-emerald-500/20 bg-slate-900 border border-slate-800">
                                         {user.image ? (
                                             <Image
-                                                src={user.image}
-                                                alt={user.name ?? "User avatar"}
+                                                src={user?.image}
+                                                alt={user?.name ?? "User avatar"}
                                                 width={36}
                                                 height={36}
                                                 className="object-cover h-full w-full"
