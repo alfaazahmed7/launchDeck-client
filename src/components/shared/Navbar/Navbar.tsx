@@ -11,14 +11,6 @@ import toast from "react-hot-toast";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    // Guest navigation links array
-    const navLinks = [
-        { label: "Home", href: "/" },
-        { label: "Explore Projects", href: "/projects" },
-        { label: "About", href: "/about" },
-        { label: "Contact", href: "/contact" },
-    ];
-
     // User session
     const userData = authClient.useSession();
     const user = userData.data?.user;
@@ -29,6 +21,20 @@ export default function Navbar() {
         await authClient.signOut();
         toast.success('You have successfully sign out');
     }
+
+    // Guest navigation links array
+    const navLinks = [
+        { label: "Home", href: "/" },
+        { label: "Explore Projects", href: "/projects" },
+        { label: "About", href: "/about" },
+        ...(user 
+            ? [
+                {label: 'Add Project', href: '/add-project'},
+                {label: 'Manage Projects', href: 'manage-projects'},
+            ]
+            : []),
+        { label: "Contact", href: "/contact" },
+    ];
 
     return (
         <nav className="sticky top-0 z-50 border-b border-slate-700 bg-slate-900 text-white shadow-md">

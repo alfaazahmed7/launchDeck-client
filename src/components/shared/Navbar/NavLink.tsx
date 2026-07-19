@@ -18,7 +18,7 @@ export default function NavLink({ href, label, onClick }: NavLinkProps) {
         <Link
             href={href}
             onClick={onClick}
-            className={`relative py-2 text-sm font-medium tracking-wide transition-colors duration-200 uppercase block md:inline-block
+            className={`relative py-2 text-[12px] font-medium tracking-wide transition-colors duration-200 uppercase block md:inline-block
         ${isActive ? "text-emerald-400" : "text-slate-300 hover:text-emerald-400"}
       `}
         >
