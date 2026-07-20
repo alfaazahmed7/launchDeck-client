@@ -106,7 +106,7 @@ export default function AboutContent() {
                     {/* Developer Portals Anchor links */}
                     <div className="flex items-center gap-2.5 shrink-0">
                         <a
-                            href="https://github.com/alfaazahmed" target="_blank" rel="noreferrer"
+                            href="https://github.com/alfaazahmed7" target="_blank" rel="noreferrer"
                             className="inline-flex h-9 items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-slate-950 px-3.5 text-xs font-bold text-slate-300 hover:border-slate-700 hover:text-white transition-all"
                         >
                             GitHub Profile <ExternalLink size={12} className="text-slate-500" />
