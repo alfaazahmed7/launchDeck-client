@@ -1,6 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { getUserSession } from "@/lib/core/session";
+
+const user = await getUserSession();
 
 const CallToAction = () => {
     return (
@@ -31,13 +34,23 @@ const CallToAction = () => {
                     <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
 
                         {/* Primary Action Button */}
-                        <Link
-                            href="/register"
-                            className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-emerald-500 px-6 py-3.5 text-xs font-bold text-slate-950 transition-all duration-200 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] sm:w-auto"
-                        >
-                            Register Now
-                            <ArrowUpRight size={14} />
-                        </Link>
+                        {user ? (
+                            <Link
+                                href="/add-project"
+                                className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-emerald-500 px-6 py-3.5 text-xs font-bold text-slate-950 transition-all duration-200 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] sm:w-auto"
+                            >
+                                Publish A Project
+                                <ArrowUpRight size={14} />
+                            </Link>
+                        ) : (
+                            <Link
+                                href="/register"
+                                className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-emerald-500 px-6 py-3.5 text-xs font-bold text-slate-950 transition-all duration-200 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] sm:w-auto"
+                            >
+                                Register Now
+                                <ArrowUpRight size={14} />
+                            </Link>)}
+
 
                         {/* Secondary Option Button */}
                         <Link

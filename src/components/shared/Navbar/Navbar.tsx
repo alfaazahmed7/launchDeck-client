@@ -55,7 +55,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Center/Right: Desktop Navigation Links */}
-                    <div className="hidden lg:flex md:items-center md:space-x-8">
+                    <div className="hidden xl:flex md:items-center md:space-x-8">
                         {navLinks.map((link) => (
                             <NavLink
                                 key={link.href}
@@ -66,7 +66,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Far Right: Desktop Actions & Auth */}
-                    <div className="hidden md:flex md:items-center md:space-x-6">
+                    <div className="hidden xl:flex md:items-center md:space-x-6">
                         {isPending ? (
                             /* Clean loading state using an emerald accent spinner */
                             <span className="loading loading-spinner loading-md text-emerald-400"></span>
@@ -121,7 +121,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Mobile Menu Button (Hamburger) */}
-                    <div className="flex items-center md:hidden">
+                    <div className="flex items-center xl:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             type="button"
@@ -138,7 +138,7 @@ export default function Navbar() {
 
             {/* Mobile Drawer Menu */}
             <div
-                className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100 border-t border-slate-800" : "max-h-0 opacity-0 overflow-hidden"
+                className={`xl:hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100 border-t border-slate-800" : "max-h-0 opacity-0 overflow-hidden"
                     }`}
                 id="mobile-menu"
             >

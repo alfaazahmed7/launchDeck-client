@@ -36,7 +36,7 @@ export default function Banner() {
                         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
                             {/* Primary: Publish Your Project */}
                             <Link
-                                href="/publish"
+                                href="/add-project"
                                 className="group flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-8 py-4 text-base font-bold text-slate-900 transition-all duration-300 hover:bg-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] sm:w-auto"
                             >
                                 Publish Your Project
