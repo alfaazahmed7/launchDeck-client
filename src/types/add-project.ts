@@ -1,5 +1,8 @@
 export interface CreateProjectPayload {
     name: string;
+    userId: string;
+    userEmail: string;
+    userName: string;
     tagline: string;
     category: string;
     technologies: string[];

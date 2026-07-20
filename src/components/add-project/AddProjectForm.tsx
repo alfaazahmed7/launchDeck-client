@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { authClient } from '@/lib/auth-client';
 
 export default function AddProjectForm() {
     const router = useRouter();
@@ -36,6 +37,10 @@ export default function AddProjectForm() {
 
     // Base URL
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
+
+    // Logged in user data
+    const userData = authClient.useSession();
+    const user = userData.data?.user;
 
     // Dynamic Helpers for Tag & Array Appending
     const addTech = () => {
@@ -87,6 +92,9 @@ export default function AddProjectForm() {
         // Map perfectly structured payload parameters to align with db schema
         const payload = {
             name,
+            userId: user?.id,
+            userEmail: user?.email,
+            userName: user?.name,
             tagline,
             category,
             technologies,
