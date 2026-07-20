@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Eye, Edit3, Trash2, FolderCode, Calendar, ShieldAlert, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { UserAddedProjects } from '@/types/add-project';
+import { deleteUserProject } from '@/lib/actions/manageProjects';
 
 interface ManageProjectsClientProps {
     initialProjects: UserAddedProjects[];
@@ -20,8 +21,6 @@ export default function ManageProjectsClient({ initialProjects }: ManageProjects
     const [activeDeleteId, setActiveDeleteId] = useState<string | null>(null);
     const [isDeleting, setIsDeleting] = useState(false);
 
-    const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
-
     const promptDelete = (id: string) => {
         setActiveDeleteId(id);
         setIsConfirmOpen(true);
@@ -32,19 +31,19 @@ export default function ManageProjectsClient({ initialProjects }: ManageProjects
         setIsDeleting(true);
 
         try {
-            const response = await fetch(`${baseUrl}/api/projects/${activeDeleteId}`, {
-                method: 'DELETE',
-            });
+            // Execute the imported API call directly using the selected project ID
+            await deleteUserProject(activeDeleteId);
 
-            if (!response.ok) throw new Error("Could not drop architecture document record.");
-
-            // FIX: Uses flat _id string evaluation safely
+            // Update local state by filtering out the dropped document row configuration
             setProjects(projects.filter(p => p._id !== activeDeleteId));
+
             toast.success("Project architecture dropped from deployment feed.");
             router.refresh();
         } catch (err: any) {
+            // Captures and prints the error message parsed or thrown from deleteUserProject
             toast.error(err.message || "Failed to finalize project destruction safely.");
         } finally {
+            // Tear down operation statuses and close modal dialog layers cleanly
             setIsDeleting(false);
             setIsConfirmOpen(false);
             setActiveDeleteId(null);
@@ -131,19 +130,19 @@ export default function ManageProjectsClient({ initialProjects }: ManageProjects
                     {/* Action Buttons Hub */}
                     <div className="flex items-center justify-center gap-2 border-t border-slate-900/60 pt-4 w-full sm:w-auto sm:border-t-0 sm:pt-0">
                         <Link
-                            href={`/projects/details/${project._id}`} // FIX: Flat matching layout navigation parameter strings
+                            href={`/projects/${project._id}`}
                             className="flex h-9 items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-slate-950/40 px-3.5 text-xs font-bold text-slate-300 transition-all hover:border-slate-700 hover:text-white hover:bg-slate-900"
                         >
                             <Eye size={13} />
                             <span className="sm:inline">View</span>
                         </Link>
-                        <Link
+                        {/* <Link
                             href={`/projects/edit/${project._id}`} // FIX: Flat matching layout navigation parameter strings
                             className="flex h-9 items-center justify-center gap-1.5 rounded-xl border border-slate-800 bg-slate-950/40 px-3.5 text-xs font-bold text-slate-300 transition-all hover:border-emerald-500/30 hover:text-emerald-400 hover:bg-emerald-500/5"
                         >
                             <Edit3 size={13} />
                             <span className="sm:inline">Edit</span>
-                        </Link>
+                        </Link> */}
                         <button
                             type="button"
                             onClick={() => promptDelete(project._id)} // FIX: Flat targeting allocation trigger

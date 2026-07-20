@@ -30,7 +30,7 @@ export default function Navbar() {
         ...(user 
             ? [
                 {label: 'Add Project', href: '/add-project'},
-                {label: 'Manage Projects', href: 'manage-projects'},
+                {label: 'Manage Projects', href: '/manage-projects'},
             ]
             : []),
         { label: "Contact", href: "/contact" },
