@@ -3,9 +3,10 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { getUserSession } from "@/lib/core/session";
 
-const user = await getUserSession();
 
-const CallToAction = () => {
+const CallToAction = async () => {
+    const user = await getUserSession();
+    
     return (
         <section className="relative px-4 py-24 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl">
