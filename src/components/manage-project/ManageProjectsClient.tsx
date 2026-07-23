@@ -67,7 +67,7 @@ export default function ManageProjectsClient({ initialProjects }: ManageProjects
                 <FolderCode size={40} className="text-slate-600 mb-4" />
                 <h3 className="text-sm font-bold text-slate-300">No Projects Found</h3>
                 <p className="text-xs text-slate-500 mt-1 max-w-xs">You haven't initialized any system deployments to this profile layer yet.</p>
-                <Link href="/projects/add" className="mt-4 rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-bold text-slate-950 hover:bg-emerald-400 transition-all">
+                <Link href="/add-project" className="mt-4 rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-bold text-slate-950 hover:bg-emerald-400 transition-all">
                     Publish First Project
                 </Link>
             </div>
