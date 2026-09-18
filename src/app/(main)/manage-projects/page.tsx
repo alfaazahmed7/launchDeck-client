@@ -15,7 +15,7 @@ const ManageProjectPage = async () => {
     const projects = await getUserProjects(user?.email);
 
     return (
-        <div className="min-h-[calc(100vh-64px)] bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-[calc(100vh-64px)] text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-5xl">
 
                 {/* Dashboard Meta Header */}

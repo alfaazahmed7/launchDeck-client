@@ -2,7 +2,7 @@ export default function Loading() {
     return (
         <div className="min-h-screen text-slate-100 pb-24 animate-pulse">
             {/* --- HERO SECTION SKELETON --- */}
-            <div className="relative border-b border-slate-800 bg-slate-900/40 py-12 backdrop-blur-sm lg:py-20">
+            <div className="relative border-b border-slate-800 py-12 lg:py-20">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     {/* Back link placeholder */}
                     <div className="h-4 w-32 bg-slate-800 rounded mb-6" />

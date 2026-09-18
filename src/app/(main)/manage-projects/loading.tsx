@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Loading() {
     return (
-        <div className="min-h-[calc(100vh-64px)] bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8 animate-pulse">
+        <div className="min-h-[calc(100vh-64px)] text-slate-100 py-12 px-4 sm:px-6 lg:px-8 animate-pulse">
             <div className="mx-auto max-w-5xl">
 
                 {/* Header Skeleton Block */}

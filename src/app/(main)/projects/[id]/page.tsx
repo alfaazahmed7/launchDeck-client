@@ -36,7 +36,7 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
         <div className="min-h-screen text-slate-100 pb-24">
             
             {/* --- HERO SECTION --- */}
-            <div className="relative border-b border-slate-800 bg-slate-900/40 py-12 backdrop-blur-sm lg:py-20">
+            <div className="relative border-b border-slate-800 py-12 lg:py-20">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     
                     <Link href="/projects" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-emerald-400 transition-colors mb-6 group">
@@ -185,7 +185,7 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
 
                 {/* --- RELATED CATEGORY SHOWCASE --- */}
                 {relatedProjects.length > 0 && (
-                    <div className="mt-20 pt-10 border-t border-slate-800/80">
+                    <div className="project-hero-divider mt-20 pt-10 border-t border-slate-800/80">
                         <h2 className="text-2xl font-bold tracking-tight text-white mb-2">
                             Related <span className="text-emerald-400">Projects</span>
                         </h2>

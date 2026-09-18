@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function AddProjectPage() {
     return (
-        <div className="min-h-[calc(100vh-64px)] bg-slate-950 text-slate-100 flex justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-[calc(100vh-64px)] text-slate-100 flex justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-4xl">
                 {/* Header Block */}
                 <div className="mb-8 text-center sm:text-left">

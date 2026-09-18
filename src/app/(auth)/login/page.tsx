@@ -9,7 +9,7 @@ export const metadata = {
 export default function LoginPage() {
     return (
         // Calculates exact vertical space below a standard navbar to force total center alignment
-        <div className="min-h-[calc(100vh-64px)] bg-slate-950 text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div className="min-h-[calc(100vh-64px)] text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
             <LoginForm />
         </div>
     );

@@ -19,13 +19,13 @@ export default function NavLink({ href, label, onClick }: NavLinkProps) {
             href={href}
             onClick={onClick}
             className={`relative py-2 text-[12px] font-medium tracking-wide transition-colors duration-200 uppercase block md:inline-block
-        ${isActive ? "text-emerald-400" : "text-slate-300 hover:text-emerald-400"}
+        ${isActive ? "text-emerald-300 dark:text-emerald-300/90" : "text-slate-400 dark:text-slate-400/80 hover:text-emerald-300 dark:hover:text-emerald-300/90"}
       `}
         >
             {label}
             {/* Active Line Indicator */}
             {isActive && (
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-6 h-[2px]  bg-emerald-400 rounded-full" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-6 h-[2px] bg-emerald-400/70 dark:bg-emerald-400/50 rounded-full" />
             )}
         </Link>
     );

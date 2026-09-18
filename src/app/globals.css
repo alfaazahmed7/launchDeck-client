@@ -1,2 +1,364 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Dark mode deliberately uses the original Tailwind/daisyUI styles and
+   component classes without remapping their palette or adding global rules.
+   Only the new toggle needs dark tokens; these alias existing slate utilities.
+   All light-theme overrides require an explicit .light class. */
+:root:not(.light) {
+  --ld-background: var(--color-slate-950);
+  --ld-border: var(--color-slate-800);
+  --ld-glass: color-mix(in oklab, var(--color-slate-900) 80%, transparent);
+  --ld-muted: var(--color-slate-400);
+  --ld-primary: var(--color-emerald-400);
+  --ld-hover: var(--color-slate-800);
+  --ld-input-focus: var(--color-emerald-500);
+}
+
+/* Identical server/client markup; icons follow next-themes before paint. */
+.ld-theme-sun { display: block; }
+.ld-theme-moon { display: none; }
+.light .ld-theme-sun { display: none; }
+.light .ld-theme-moon { display: block; }
+
+/* Light palette, utility aliases, and light-only compatibility rules. */
+:root.light {
+  color-scheme: light;
+  --ld-primary: #7c3aed;
+  --ld-primary-hover: #6d28d9;
+  --ld-primary-soft: #ede9fe;
+  --ld-accent: #2563eb;
+  --ld-accent-soft: #dbeafe;
+  --ld-success: #059669;
+  --ld-success-hover: #047857;
+  --ld-success-soft: #d1fae5;
+  --ld-warning: #d97706;
+  --ld-warning-soft: #fef3c7;
+  --ld-danger: #dc2626;
+  --ld-danger-hover: #b91c1c;
+  --ld-danger-soft: #fee2e2;
+  --ld-background: #fafbfc;
+  --ld-background-secondary: #f4f6f8;
+  --ld-surface: #ffffff;
+  --ld-surface-secondary: #f4f6f8;
+  --ld-card: #ffffff;
+  --ld-glass: rgba(255, 255, 255, 0.8);
+  --ld-navbar: rgba(255, 255, 255, 0.85);
+  --ld-sidebar: #ffffff;
+  --ld-section-alt: #f8fafc;
+  --ld-text: #111827;
+  --ld-text-secondary: #4b5563;
+  --ld-muted: #6b7280;
+  --ld-placeholder: #9ca3af;
+  --ld-text-inverse: #ffffff;
+  --ld-link: #7c3aed;
+  --ld-link-hover: #6d28d9;
+  --ld-border: #e5e7eb;
+  --ld-border-strong: #d1d5db;
+  --ld-border-soft: #f3f4f6;
+  --ld-divider: #e5e7eb;
+  --ld-input-bg: #ffffff;
+  --ld-input-border: #d1d5db;
+  --ld-input-focus: #7c3aed;
+  --ld-input-ring: rgba(124, 58, 237, 0.18);
+  --ld-input-disabled: #f3f4f6;
+  --ld-hover: #f3f4f6;
+  --ld-pressed: #e5e7eb;
+  --ld-overlay: rgba(15, 23, 42, 0.55);
+  --ld-shadow-sm: rgba(15, 23, 42, 0.04);
+  --ld-shadow-md: rgba(15, 23, 42, 0.08);
+  --ld-shadow-lg: rgba(15, 23, 42, 0.12);
+  --ld-card-shadow: 0 1px 2px var(--ld-shadow-sm), 0 1px 3px var(--ld-shadow-md);
+  --ld-card-shadow-hover: 0 12px 28px -12px var(--ld-shadow-lg);
+  --ld-ring-shadow: 0 0 0 3px var(--ld-input-ring);
+  --ld-badge-neutral-bg: #f3f4f6;
+  --ld-badge-neutral-text: #4b5563;
+  --ld-badge-primary-text: #6d28d9;
+  --ld-badge-blue-bg: #dbeafe;
+  --ld-badge-blue-text: #1d4ed8;
+  --ld-badge-success-bg: #d1fae5;
+  --ld-badge-success-text: #047857;
+  --ld-badge-warning-bg: #fef3c7;
+  --ld-badge-warning-text: #b45309;
+  --ld-badge-danger-bg: #fee2e2;
+  --ld-badge-danger-text: #b91c1c;
+  --ld-skeleton-base: #e5e7eb;
+  --ld-skeleton-highlight: #f8fafc;
+  --ld-selection-bg: #ddd6fe;
+  --ld-selection-text: #4c1d95;
+  --ld-grid-line: rgba(51, 65, 85, 0.09);
+  --ld-grid-line-soft: rgba(51, 65, 85, 0.07);
+  --ld-glow-primary: rgba(124, 58, 237, 0.14);
+  --ld-glow-accent: rgba(37, 99, 235, 0.12);
+  --ld-glow-success: rgba(5, 150, 105, 0.12);
+  --ld-showcase-bg: #f5f7fa;
+  --ld-showcase-node: #ffffff;
+  --ld-showcase-bar: #e2e8f0;
+  --ld-code-panel: #f8fafc;
+  --ld-cta-gradient: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 48%, #4f46e5 100%);
+  --ld-cta-gradient-hover: linear-gradient(90deg, #6d28d9 0%, #7c3aed 48%, #4338ca 100%);
+  --ld-hero-gradient: linear-gradient(180deg, #ffffff 0%, #f7f5ff 32%, #f2eeff 60%, #eef4ff 100%);
+  --ld-section-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --ld-auth-gradient: linear-gradient(180deg, #ffffff 0%, #f7f5ff 55%, #eef2ff 100%);
+  --ld-dark-surface: #18181b;
+  --ld-dark-surface-text: #fafafa;
+  --ld-dark-surface-border: #27272a;
+}
+
+@layer theme {
+  :root.light {
+    --color-white: var(--ld-text);
+    --color-black: var(--ld-text);
+    --color-slate-100: var(--ld-text);
+    --color-slate-200: var(--ld-text);
+    --color-slate-300: var(--ld-text-secondary);
+    --color-slate-400: var(--ld-muted);
+    --color-slate-500: var(--ld-muted);
+    --color-slate-600: var(--ld-text-secondary);
+    --color-slate-700: var(--ld-border-strong);
+    --color-slate-800: var(--ld-border);
+    --color-slate-900: var(--ld-surface);
+    --color-slate-950: var(--ld-background);
+    --color-emerald-300: var(--ld-badge-success-text);
+    --color-emerald-400: var(--ld-success);
+    --color-emerald-500: var(--ld-success);
+    --color-emerald-600: var(--ld-success);
+    --color-red-400: var(--ld-danger);
+    --color-red-500: var(--ld-danger);
+    --color-rose-400: var(--ld-danger);
+    --color-rose-500: var(--ld-danger);
+    --color-amber-400: var(--ld-warning);
+    --color-amber-500: var(--ld-warning);
+    --color-blue-400: var(--ld-accent);
+    --color-blue-500: var(--ld-accent);
+    --color-blue-600: var(--ld-accent);
+    --color-base-100: var(--ld-surface);
+    --color-base-200: var(--ld-surface-secondary);
+    --color-base-300: var(--ld-border);
+    --color-base-content: var(--ld-text);
+  }
+}
+@layer base {
+  :where(:root.light) {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  :where(:root.light) body {
+    background-color: var(--ld-background);
+    color: var(--ld-text);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  :where(:root.light) h1,
+  :where(:root.light) h2,
+  :where(:root.light) h3,
+  :where(:root.light) h4,
+  :where(:root.light) h5,
+  :where(:root.light) h6 {
+    color: var(--ld-text);
+  }
+
+  :where(:root.light) p {
+    color: var(--ld-text-secondary);
+  }
+
+  :where(:root.light) a {
+    transition: color 0.2s ease;
+  }
+
+  :where(:root.light) hr {
+    border-color: var(--ld-divider);
+  }
+
+  :where(:root.light) ::placeholder {
+    color: var(--ld-placeholder);
+  }
+
+  :where(:root.light) ::selection {
+    background-color: var(--ld-selection-bg);
+    color: var(--ld-selection-text);
+  }
+
+  :where(:root.light) :focus-visible {
+    outline: 2px solid var(--ld-input-focus);
+    outline-offset: 2px;
+  }
+  :where(:root.light) input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  :where(:root.light) textarea,
+  :where(:root.light) select {
+    background-color: var(--ld-input-bg);
+    border-color: var(--ld-input-border);
+    color: var(--ld-text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  :where(:root.light) input:focus,
+  :where(:root.light) textarea:focus,
+  :where(:root.light) select:focus {
+    border-color: var(--ld-input-focus);
+    box-shadow: var(--ld-ring-shadow);
+    outline: none;
+  }
+
+  :where(:root.light) input:disabled,
+  :where(:root.light) textarea:disabled,
+  :where(:root.light) select:disabled {
+    background-color: var(--ld-input-disabled);
+    color: var(--ld-placeholder);
+    cursor: not-allowed;
+  }
+
+  :where(:root.light) option {
+    background-color: var(--ld-input-bg);
+    color: var(--ld-text);
+  }
+  :where(:root.light) a:focus-visible,
+  :where(:root.light) button:focus-visible,
+  :where(:root.light) [role="button"]:focus-visible {
+    outline: 2px solid var(--ld-input-focus);
+    outline-offset: 2px;
+  }
+}
+
+:root.light .bg-emerald-500.text-slate-900,
+:root.light .bg-emerald-500.text-slate-950,
+:root.light .bg-emerald-500.text-slate-800 {
+  background-image: var(--ld-cta-gradient);
+  background-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 8px 20px -10px rgba(124, 58, 237, 0.55);
+}
+
+:root.light .bg-emerald-500.text-slate-900:hover,
+:root.light .bg-emerald-500.text-slate-950:hover,
+:root.light .bg-emerald-500.text-slate-800:hover {
+  background-image: var(--ld-cta-gradient-hover);
+  color: #ffffff;
+}
+:root.light .bg-emerald-500.text-slate-900:focus-visible,
+:root.light .bg-emerald-500.text-slate-950:focus-visible,
+:root.light .bg-emerald-500.text-slate-800:focus-visible {
+  outline: 2px solid var(--ld-input-focus);
+  outline-offset: 2px;
+}
+:root.light .ld-media-frame {
+  background-color: var(--ld-showcase-bg);
+  border-color: var(--ld-border) !important;
+}
+:root.light .from-emerald-400.via-teal-300.to-blue-500,
+:root.light .from-emerald-400.via-teal-300.to-blue-500 * {
+  background-image: var(--ld-cta-gradient) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+:root.light [class*="border-slate-900"],
+:root.light [class*="border-slate-950"] {
+  border-color: var(--ld-border) !important;
+}
+:root.light [class*="bg-slate-900/5"],
+:root.light [class*="bg-slate-900/10"],
+:root.light [class*="bg-slate-900/20"] {
+  background-color: var(--ld-surface-secondary);
+}
+:root.light [class*="bg-slate-900/3"],
+:root.light [class*="bg-slate-900/4"],
+:root.light [class*="bg-slate-900/6"],
+:root.light [class*="bg-slate-900/7"],
+:root.light [class*="bg-slate-900/8"] {
+  background-color: var(--ld-surface-secondary) !important;
+}
+:root.light select,
+:root.light select option {
+  background-color: var(--ld-input-bg);
+  color: var(--ld-text);
+  border-color: var(--ld-input-border);
+}
+:root.light .shadow-2xl,
+:root.light .shadow-xl {
+  box-shadow: 0 20px 40px -24px var(--ld-shadow-lg) !important;
+}
+:root.light .ld-row-hover:hover {
+  background-color: #f9fafb;
+}
+:root.light :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, select) {
+  background-color: var(--ld-input-bg) !important;
+  border-color: var(--ld-input-border) !important;
+  color: var(--ld-text);
+}
+:root.light :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, select):focus {
+  border-color: var(--ld-input-focus) !important;
+  box-shadow: var(--ld-ring-shadow);
+}
+:root.light :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, select):disabled {
+  background-color: var(--ld-input-disabled) !important;
+}
+:root.light :is(input, textarea)::placeholder { color: var(--ld-placeholder); }
+:root.light footer { background-color: var(--ld-surface); border-top-color: var(--ld-border); }
+:root.light nav { background-color: var(--ld-navbar); }
+:root.light main > section:first-child:has(h1) { background-image: var(--ld-hero-gradient); }
+:root.light main:has(input[type="password"]) { background-image: var(--ld-auth-gradient); }
+:root.light .border[class*="bg-slate-900/"]:not(input):not(textarea):not(select) {
+  background-color: var(--ld-card) !important;
+  box-shadow: var(--ld-card-shadow);
+}
+:root.light .group.border[class*="bg-slate-900/"]:hover {
+  border-color: var(--ld-primary) !important;
+  box-shadow: var(--ld-card-shadow-hover) !important;
+}
+:root.light .border:has(> button[aria-expanded]):hover { background-color: var(--ld-hover) !important; }
+:root.light .fixed.inset-0[class*="bg-slate-950/"] { background-color: var(--ld-overlay); }
+:root.light :is(a, button)[class*="hover:text-emerald"]:hover { color: var(--ld-primary); }
+:root.light :is(a, button).hover\:bg-emerald-500:hover {
+  background-image: var(--ld-cta-gradient);
+  color: var(--ld-dark-surface-text);
+}
+:root.light button[type="submit"].bg-white {
+  background-image: var(--ld-cta-gradient);
+  color: var(--ld-dark-surface-text);
+}
+:root.light button[type="submit"].bg-white:hover { background-image: var(--ld-cta-gradient-hover); }
+:root.light .from-emerald-600.to-teal-950 {
+  background-image: var(--ld-cta-gradient);
+  --color-slate-950: var(--ld-dark-surface-text);
+  --color-slate-900: var(--ld-dark-surface-text);
+}
+:root.light .from-emerald-600.to-teal-950 .bg-slate-950 { background-color: var(--ld-dark-surface); }
+:root.light .bg-blue-500\/10.text-blue-400 { background-color: var(--ld-badge-blue-bg); color: var(--ld-badge-blue-text); }
+:root.light .bg-emerald-500\/10.text-emerald-400 { background-color: var(--ld-badge-success-bg); color: var(--ld-badge-success-text); }
+:root.light .bg-amber-500\/10.text-amber-400 { background-color: var(--ld-badge-warning-bg); color: var(--ld-badge-warning-text); }
+:root.light .bg-red-500\/10.text-red-400 { background-color: var(--ld-badge-danger-bg); color: var(--ld-badge-danger-text); }
+:root.light :is(.animate-pulse, .animate-pulse *)[class*="bg-slate-800"], :root.light :is(.animate-pulse, .animate-pulse *)[class*="bg-slate-700"] { background-color: var(--ld-skeleton-base); }
+:root.light [role="tooltip"] { background-color: var(--ld-dark-surface); color: var(--ld-dark-surface-text); }
+
+/* Light-mode override for the desktop background grid that renders the fixed
+   gradient layer from the root layout. Dark mode keeps its hardcoded Tailwind
+   background classes untouched. */
+:root.light .pointer-events-none > div > div.ld-grid {
+  background-image: linear-gradient(to right, rgba(51, 65, 85, 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(51, 65, 85, 0.07) 1px, transparent 1px);
+}
+:root.light .pointer-events-none > div > div.ld-glow-accent { background-color: rgba(37, 99, 235, 0.10); }
+:root.light .pointer-events-none > div > div.ld-glow-success { background-color: rgba(5, 150, 105, 0.10); }
+
+:root.light :is(.bg-slate-950).hover\:border-emerald-500\/50:hover,
+:root.light .hover\:border-emerald-500\/50:hover { border-color: var(--ld-border-strong); }
+:root.light :is(.bg-slate-950).hover\:bg-emerald-500:hover,
+:root.light .hover\:bg-emerald-500:hover { background-color: var(--ld-surface-secondary); }
+:root.light :is(.bg-slate-950).hover\:text-slate-950:hover,
+:root.light .hover\:text-slate-950:hover { color: var(--ld-text); }
+
+/* Light-mode divider above the project image on the project details page. */
+:root.light .project-hero-divider { border-top-color: var(--ld-border-strong); }
+
+/* Theme toggle hover in light mode. */
+:root.light .theme-toggle:hover { border-color: var(--ld-primary); background-color: var(--ld-primary-soft); color: var(--ld-primary-hover); }
+/* Theme toggle hover in dark mode — no green, soft violet. */
+:root:not(.light) .theme-toggle:hover { border-color: var(--ld-primary); background-color: color-mix(in oklab, var(--ld-primary) 18%, transparent); color: var(--ld-primary); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root.light { scroll-behavior: auto; }
+}
