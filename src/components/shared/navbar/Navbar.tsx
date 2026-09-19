@@ -9,6 +9,11 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 import ThemeToggle from "@/components/shared/theme/ThemeToggle";
 import { useTheme } from "next-themes";
+import {
+    DesktopActionsSkeleton,
+    MobileActionsSkeleton,
+    NavbarLoadingStatus,
+} from "./NavbarSkeleton";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -26,22 +31,26 @@ export default function Navbar() {
         toast.success('You have successfully sign out');
     }
 
-    // Guest navigation links array
+    // Navigation links array.
+    // Auth-only routes are only injected once the session resolves AND a user
+    // exists. While the session is pending nothing extra is rendered, so the
+    // link skeleton set always matches the real route set for that state.
     const navLinks = [
         { label: "Home", href: "/" },
         { label: "Explore Projects", href: "/projects" },
         { label: "About", href: "/about" },
-        ...(user 
+        ...(user
             ? [
-                {label: 'Add Project', href: '/add-project'},
-                {label: 'Manage Projects', href: '/manage-projects'},
-            ]
+                  { label: "Add Project", href: "/add-project" },
+                  { label: "Manage Projects", href: "/manage-projects" },
+              ]
             : []),
         { label: "Contact", href: "/contact" },
     ];
 
     return (
         <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-900/85 backdrop-blur-md text-white shadow-[0_1px_0_0_color-mix(in_oklab,var(--color-slate-700)_6%,transparent),0_6px_18px_-10px_color-mix(in_oklab,var(--color-slate-900)_28%,transparent)] light:border-slate-200/70 light:bg-white/70 light:text-slate-800 light:shadow-[0_1px_0_0_color-mix(in_oklab,var(--color-slate-200)_40%,transparent),0_8px_22px_-12px_color-mix(in_oklab,var(--color-slate-800)_18%,transparent)]">
+            {isPending && <NavbarLoadingStatus />}
             <div className="md:w-11/12 lg:w-10/12 mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
 
@@ -69,12 +78,13 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    {/* Far Right: Desktop Actions & Auth */}
+                    {/* Far Right: Desktop Actions & Auth — always exactly 3 items
+                        (ThemeToggle + auth block for the resolved session state) */}
                     <div className="hidden xl:flex md:items-center md:space-x-6">
                         <ThemeToggle />
                         {isPending ? (
-                            /* Clean loading state using an emerald accent spinner */
-                            <span className="loading loading-spinner loading-md text-emerald-400"></span>
+                            /* Placeholder reserves the signed-in footprint */
+                            <DesktopActionsSkeleton />
                         ) : user ? (
                             <div className="flex items-center gap-4">
                                 {/* User Avatar with premium Emerald Ring highlight instead of generic neutral styles */}
@@ -161,11 +171,11 @@ export default function Navbar() {
 
                     <hr className="border-slate-800 my-4" />
 
-                    {/* Mobile Auth Buttons */}
+                    {/* Mobile Auth Buttons — mirrors the desktop right cluster */}
                     <div className="space-y-2">
                         {isPending ? (
-                            /* Clean loading state using an emerald accent spinner */
-                            <span className="loading loading-spinner loading-md text-emerald-400"></span>
+                            /* Placeholder reserves the signed-in footprint */
+                            <MobileActionsSkeleton />
                         ) : user ? (
                             <div className="flex items-center gap-4">
                                 {/* User Avatar with premium Emerald Ring highlight instead of generic neutral styles */}
