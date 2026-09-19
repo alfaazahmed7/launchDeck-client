@@ -1,19 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { Menu, X, Search } from "lucide-react";
-import NavLink from "./NavLink";
+import ThemeToggle from "@/components/providers/theme/ThemeToggle";
 import { authClient } from "@/lib/auth-client";
-import Image from "next/image";
-import toast from "react-hot-toast";
-import ThemeToggle from "@/components/shared/theme/ThemeToggle";
+import { Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import {
     DesktopActionsSkeleton,
     MobileActionsSkeleton,
     NavbarLoadingStatus,
 } from "./NavbarSkeleton";
+import NavLink from "./NavLink";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -41,9 +41,9 @@ export default function Navbar() {
         { label: "About", href: "/about" },
         ...(user
             ? [
-                  { label: "Add Project", href: "/add-project" },
-                  { label: "Manage Projects", href: "/manage-projects" },
-              ]
+                { label: "Add Project", href: "/add-project" },
+                { label: "Manage Projects", href: "/manage-projects" },
+            ]
             : []),
         { label: "Contact", href: "/contact" },
     ];

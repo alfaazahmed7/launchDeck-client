@@ -1,10 +1,12 @@
+import SmoothScrollProvider from "@/components/providers/scroll/SmoothScrollProvider";
+import ThemeProvider from "@/components/providers/theme/ThemeProvider";
+import Footer from "@/components/shared/footer/Footer";
+import Navbar from "@/components/shared/navbar/Navbar";
+import "lenis/dist/lenis.css";
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/shared/navbar/Navbar";
-import Footer from "@/components/shared/footer/Footer";
 import { Toaster } from "react-hot-toast";
-import ThemeProvider from "@/components/shared/theme/ThemeProvider";
+import "./globals.css";
 
 const FigtreeFont = Figtree({
   subsets: ["latin"],
@@ -29,33 +31,35 @@ export default function RootLayout({
       <body className="relative min-h-screen bg-slate-950 text-white">
 
         <ThemeProvider>
-          {/* GLOBAL BACKGROUND SYSTEM */}
-          <div className="pointer-events-none fixed inset-0 z-0">
-            {/* Persistent Subtle Grid Layout */}
-            <div
-              className="
-                absolute inset-0
-                bg-[size:4rem_4rem]
-                bg-[linear-gradient(to_right,rgba(51,65,85,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(51,65,85,0.025)_1px,transparent_1px)]
-                dark:bg-[linear-gradient(to_right,#33415512_1px,transparent_1px),linear-gradient(to_bottom,#33415510_1px,transparent_1px)]
-                ld-grid
-              "
-            />
+          <SmoothScrollProvider>
+            {/* GLOBAL BACKGROUND SYSTEM */}
+            <div className="pointer-events-none fixed inset-0 z-0">
+              {/* Persistent Subtle Grid Layout */}
+              <div
+                className="
+                  absolute inset-0
+                  bg-[size:4rem_4rem]
+                  bg-[linear-gradient(to_right,rgba(51,65,85,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(51,65,85,0.025)_1px,transparent_1px)]
+                  dark:bg-[linear-gradient(to_right,#33415512_1px,transparent_1px),linear-gradient(to_bottom,#33415510_1px,transparent_1px)]
+                  ld-grid
+                "
+              />
 
-            {/* Ambient Corner Glow Spots */}
-            <div className="absolute -top-40 left-0 h-[500px] w-[500px] rounded-full bg-blue-600/5 dark:bg-blue-600/10 ld-glow-accent blur-[140px]" />
-            <div className="absolute bottom-10 right-0 h-[600px] w-[600px] rounded-full bg-emerald-500/5 dark:bg-emerald-500/10 ld-glow-success blur-[140px]" />
-          </div>
+              {/* Ambient Corner Glow Spots */}
+              <div className="absolute -top-40 left-0 h-[500px] w-[500px] rounded-full bg-blue-600/5 dark:bg-blue-600/10 ld-glow-accent blur-[140px]" />
+              <div className="absolute bottom-10 right-0 h-[600px] w-[600px] rounded-full bg-emerald-500/5 dark:bg-emerald-500/10 ld-glow-success blur-[140px]" />
+            </div>
 
-          {/* APPLICATION WRAPPER */}
-          <div className="relative z-10 flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Toaster />
-            <Footer />
-          </div>
+            {/* APPLICATION WRAPPER */}
+            <div className="relative z-10 flex min-h-screen flex-col">
+              <Navbar />
+              <main className="flex-1">
+                {children}
+              </main>
+              <Toaster />
+              <Footer />
+            </div>
+          </SmoothScrollProvider>
         </ThemeProvider>
 
       </body>
