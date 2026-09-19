@@ -2,6 +2,7 @@ import SmoothScrollProvider from "@/components/providers/scroll/SmoothScrollProv
 import ThemeProvider from "@/components/providers/theme/ThemeProvider";
 import Footer from "@/components/shared/footer/Footer";
 import Navbar from "@/components/shared/navbar/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 import "lenis/dist/lenis.css";
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
@@ -65,7 +66,7 @@ export default function RootLayout({
             </div>
           </SmoothScrollProvider>
         </ThemeProvider>
-
+        <Analytics />
       </body>
     </html>
   );
