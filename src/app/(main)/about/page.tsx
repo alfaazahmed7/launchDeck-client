@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import AboutContent from '@/components/about/AboutContent';
 import React from 'react';
 
-export const metadata = {
-    title: 'About - LaunchDeck',
-    description: 'Discover the system mission, core architecture, and developer network framework behind LaunchDeck.',
+export const metadata: Metadata = {
+    title: 'About',
+    description: 'Learn about the LaunchDeck mission, the technology behind our open-source showcase directory, and the developer community powering it.',
 };
 
 export default function AboutPage() {

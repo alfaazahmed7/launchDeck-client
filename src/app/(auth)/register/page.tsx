@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import RegisterForm from '@/components/authentication/RegisterForm';
 import React from 'react';
 
-export const metadata = {
-    title: 'Create Your Account - LaunchDeck',
-    description: 'Join the premier open-source application directory showcase ecosystem.',
+export const metadata: Metadata = {
+    title: 'Create Your Account',
+    description: 'Create a free LaunchDeck account to showcase your software projects, track releases, and join a global network of builders and open-source creators.',
 };
 
 export default function RegisterPage() {

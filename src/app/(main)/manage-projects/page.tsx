@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import React from 'react';
 import { getUserProjects } from '@/lib/api/manageProject';
 import { getUserSession } from '@/lib/core/session';
 import { redirect } from 'next/navigation';
 import ManageProjectsClient from '@/components/manage-project/ManageProjectsClient';
+
+export const metadata: Metadata = {
+    title: 'Manage Projects',
+    description: 'Manage your published LaunchDeck projects from one dashboard. Monitor status, review details, update your listings, or remove entries at any time.',
+};
 
 const ManageProjectPage = async () => {
     const user = await getUserSession();

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ExternalLink, Calendar, Layers, Activity, Trophy, ArrowLeft, GitBranchPlus } from 'lucide-react';
@@ -9,6 +10,33 @@ import ProjectCard from '@/components/projects/ProjectCard';
 
 interface PageProps {
     params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { id } = await params;
+
+    try {
+        const project = await getProjectById(id);
+
+        if (!project) {
+            return {
+                title: 'Project Not Found',
+                description: 'The requested project could not be resolved within the LaunchDeck directory.',
+            };
+        }
+
+        return {
+            title: `${project.name} — ${project.category}`,
+            description: project.tagline
+                ? `${project.tagline} Explore ${project.name}, a ${project.difficulty.toLowerCase()} ${project.category} project built with ${project.technologies.slice(0, 4).join(', ')}.`
+                : `Explore ${project.name}, a ${project.difficulty.toLowerCase()} ${project.category} project on LaunchDeck.`,
+        };
+    } catch {
+        return {
+            title: 'Project Details',
+            description: 'View full architecture details, technology stack, gallery, and release information for this project on LaunchDeck.',
+        };
+    }
 }
 
 export default async function ProjectDetailsPage({ params }: PageProps) {

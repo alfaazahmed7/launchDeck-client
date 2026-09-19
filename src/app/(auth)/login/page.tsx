@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import LoginForm from '@/components/authentication/LoginForm';
 import React from 'react';
 
-export const metadata = {
-    title: 'Log In - LaunchDeck',
-    description: 'Access your cloud developer profile layer and manage your repository directory.',
+export const metadata: Metadata = {
+    title: 'Log In',
+    description: 'Sign in to LaunchDeck to publish new projects, manage your published architectures, and access your builder dashboard.',
 };
 
 export default function LoginPage() {

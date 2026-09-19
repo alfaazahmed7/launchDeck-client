@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
 import React from 'react';
 import Link from 'next/link';
 import { Home, Terminal, ShieldAlert } from 'lucide-react';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: '404 - Page Not Found',
     description: 'The requested deployment record or path could not be resolved within the LaunchDeck directory.',
 };

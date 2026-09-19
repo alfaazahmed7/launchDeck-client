@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import AddProjectForm from '@/components/add-project/AddProjectForm';
 import React from 'react';
 
-export const metadata = {
-    title: 'Publish New Project - LaunchDeck',
-    description: 'Showcase your application architecture to the global builder network.',
+export const metadata: Metadata = {
+    title: 'Publish New Project',
+    description: 'Publish your software project to LaunchDeck. Add your tech stack, gallery, live demo, and repository links to reach a global builder network.',
 };
 
 export default function AddProjectPage() {

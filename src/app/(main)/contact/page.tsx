@@ -1,11 +1,12 @@
+import type { Metadata } from "next";
 import React from 'react';
 import { Mail, MapPin, MessageSquareText } from 'lucide-react';
 import ContactForm from '@/components/contact/ContactForm';
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 
-export const metadata = {
-    title: 'Contact - LaunchDeck',
-    description: 'Connect with LaunchDeck platform administration or submit system feedback inquiries.',
+export const metadata: Metadata = {
+    title: 'Contact',
+    description: 'Contact the LaunchDeck team with questions, framework suggestions, or feedback. Send us a message and we will respond within 24 hours.',
 };
 
 export default function ContactPage() {

@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import React from "react";
 import ProjectContainer from "@/components/projects/ProjectContainer";
 import { Project } from "@/types/project";
 import { getProjects } from "@/lib/api/projects";
+
+export const metadata: Metadata = {
+    title: "Explore Projects",
+    description: "Browse open-source utilities, innovative software platforms, and elite apps built by creators. Filter by category, tech stack, difficulty, and status.",
+};
 
 interface PageProps {
     searchParams: Promise<{
