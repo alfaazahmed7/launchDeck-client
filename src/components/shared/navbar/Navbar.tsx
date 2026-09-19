@@ -200,7 +200,10 @@ export default function Navbar() {
 
                                 {/* Re-styled Sign Out Button matching the dark, border-accented aesthetic of details actions */}
                                 <button
-                                    onClick={handleSignOut}
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        handleSignOut();
+                                    }}
                                     className="rounded-xl bg-slate-950 border border-slate-800 px-4 py-2 text-xs font-bold text-slate-300 backdrop-blur-sm transition-all duration-200 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 cursor-pointer"
                                 >
                                     Sign Out
@@ -211,6 +214,7 @@ export default function Navbar() {
                             <div className="flex items-center gap-4">
                                 <Link
                                     href="/login"
+                                    onClick={() => setIsOpen(false)}
                                     className="text-xs font-bold tracking-wide text-slate-400 transition-colors duration-200 hover:text-emerald-400 uppercase"
                                 >
                                     Log In
@@ -218,6 +222,7 @@ export default function Navbar() {
 
                                 <Link
                                     href="/register"
+                                    onClick={() => setIsOpen(false)}
                                     className="rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-slate-950 transition-all duration-200 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] uppercase"
                                 >
                                     Register
