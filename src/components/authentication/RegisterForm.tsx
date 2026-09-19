@@ -97,39 +97,39 @@ export default function RegisterForm() {
                         <h2 className="text-2xl font-black tracking-tight text-slate-950 lg:text-3xl leading-tight">
                             Unlock Your <br />Workspace
                         </h2>
-                        <p className="mt-1 text-xs font-semibold text-teal-950/80 max-w-xs">
+                        <p className="mt-1 text-xs font-semibold text-slate-950/80 max-w-xs">
                             Create your account instantly to gain complete platform privileges.
                         </p>
                     </div>
 
                     <div className="space-y-2.5">
                         {/* Step 1: Current Active Phase */}
-                        <div className="flex items-center gap-3 bg-slate-950 p-2.5 rounded-xl border border-slate-900 shadow-lg text-slate-100">
+                        <div className="flex items-center gap-3 bg-slate-950 p-2.5 rounded-xl border border-slate-900 shadow-lg text-slate-100 ld-auth-active-step">
                             <span className="h-5 w-5 shrink-0 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center text-xs font-black">1</span>
                             <span className="text-xs font-bold tracking-tight">Create developer profile layer</span>
                         </div>
 
                         {/* Step 2: Unlocked Next Privileges */}
-                        <div className="flex items-center gap-3 bg-slate-950/20 p-2.5 rounded-xl text-teal-950/80 font-medium">
+                        <div className="flex items-center gap-3 bg-slate-950/20 p-2.5 rounded-xl text-slate-950/80 font-medium">
                             <span className="h-5 w-5 shrink-0 rounded-full bg-slate-950/10 flex items-center justify-center text-xs font-bold">2</span>
                             <span className="text-xs font-bold tracking-tight">Unlock unlimited project submissions</span>
                         </div>
 
                         {/* Step 3: Unlocked Next Privileges */}
-                        <div className="flex items-center gap-3 bg-slate-950/20 p-2.5 rounded-xl text-teal-950/80 font-medium">
+                        <div className="flex items-center gap-3 bg-slate-950/20 p-2.5 rounded-xl text-slate-950/80 font-medium">
                             <span className="h-5 w-5 shrink-0 rounded-full bg-slate-950/10 flex items-center justify-center text-xs font-bold">3</span>
                             <span className="text-xs font-bold tracking-tight">Access live stack analytics dashboard</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="relative z-10 text-[9px] font-bold text-teal-950/60 tracking-wider uppercase">
+                <div className="relative z-10 text-[9px] font-bold text-slate-950/60 tracking-wider uppercase">
                     © LaunchDeck System Dev Layer
                 </div>
             </div>
 
             {/* --- RIGHT PANEL: INTERACTIVE FORM ELEMENTS --- */}
-            <div className="w-full md:w-[58%] p-8 lg:p-10 flex flex-col justify-center bg-slate-950/60">
+            <div className="w-full md:w-[58%] p-8 lg:p-10 flex flex-col justify-center bg-slate-950/60 ld-auth-panel">
                 <div className="w-full max-w-md mx-auto space-y-4">
 
                     <div>
@@ -166,8 +166,8 @@ export default function RegisterForm() {
                     </div>
 
                     <div className="relative flex items-center justify-center py-1">
-                        <div className="absolute w-full border-t border-slate-900" />
-                        <span className="relative bg-[#0d1527] px-3 text-[9px] font-bold tracking-wider text-slate-600 uppercase">
+                        <div className="absolute w-full border-t border-slate-900 ld-auth-divider" />
+                        <span className="relative bg-slate-950/60 px-3 text-[9px] font-bold tracking-wider text-slate-600 uppercase ld-auth-divider-chip">
                             Or continue with
                         </span>
                     </div>
@@ -182,7 +182,7 @@ export default function RegisterForm() {
                                 value={fullName}
                                 onChange={(e) => setFullName(e.target.value)}
                                 placeholder="eg. John Francisco"
-                                className="w-full rounded-xl border border-slate-800 bg-slate-900/40 px-3 py-2.5 text-xs text-white placeholder-slate-600 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
+                                className="w-full rounded-xl border border-slate-800 bg-slate-900/40 px-3 py-2.5 text-xs text-white placeholder-slate-500 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
                             />
                         </div>
 
@@ -194,7 +194,7 @@ export default function RegisterForm() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="eg. johnfrans@gmail.com"
-                                className="w-full rounded-xl border border-slate-800 bg-slate-900/40 px-3 py-2.5 text-xs text-white placeholder-slate-600 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
+                                className="w-full rounded-xl border border-slate-800 bg-slate-900/40 px-3 py-2.5 text-xs text-white placeholder-slate-500 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
                             />
                         </div>
 
@@ -208,7 +208,7 @@ export default function RegisterForm() {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="Enter password"
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-900/40 pl-3 pr-9 py-2.5 text-xs text-white placeholder-slate-600 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
+                                        className="w-full rounded-xl border border-slate-800 bg-slate-900/40 pl-3 pr-9 py-2.5 text-xs text-white placeholder-slate-500 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
                                     />
                                     <button
                                         type="button"
@@ -229,7 +229,7 @@ export default function RegisterForm() {
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                         placeholder="Repeat password"
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-900/40 pl-3 pr-9 py-2.5 text-xs text-white placeholder-slate-600 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
+                                        className="w-full rounded-xl border border-slate-800 bg-slate-900/40 pl-3 pr-9 py-2.5 text-xs text-white placeholder-slate-500 outline-none transition-all focus:border-emerald-500/50 focus:bg-slate-900/70"
                                     />
                                     <button
                                         type="button"

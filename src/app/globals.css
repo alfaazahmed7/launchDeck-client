@@ -301,6 +301,18 @@
 :root.light nav { background-color: var(--ld-navbar); }
 :root.light main > section:first-child:has(h1) { background-image: var(--ld-hero-gradient); }
 :root.light main:has(input[type="password"]) { background-image: var(--ld-auth-gradient); }
+
+/* Auth (login/register) cards: the right-hand panel and the "Or continue with"
+   chip both use translucent slate fills that turn into a muddy grey veil on
+   top of the white card in light mode. Flatten them onto the card surface so
+   the panel matches the card and the chip stays legible. */
+:root.light .ld-auth-panel { background-color: transparent; }
+:root.light .ld-auth-panel .ld-auth-divider-chip { background-color: var(--ld-card); color: var(--ld-text-secondary); }
+:root.light .ld-auth-divider { border-color: var(--ld-border); }
+/* OAuth buttons sit on the white card, so `hover:bg-slate-900` (remapped to
+   --ld-surface) is invisible. Give them the project's standard light hover. */
+:root.light .ld-auth-panel .hover\:bg-slate-900:hover { background-color: var(--ld-surface-secondary); }
+:root.light .ld-auth-panel .hover\:border-slate-700:hover { border-color: var(--ld-border-strong); }
 :root.light .border[class*="bg-slate-900/"]:not(input):not(textarea):not(select) {
   background-color: var(--ld-card) !important;
   box-shadow: var(--ld-card-shadow);
@@ -327,6 +339,22 @@
   --color-slate-900: var(--ld-dark-surface-text);
 }
 :root.light .from-emerald-600.to-teal-950 .bg-slate-950 { background-color: var(--ld-dark-surface); }
+/* Active step / value row inside the auth left panel. The rule directly above
+   targets EVERY `.bg-slate-950` inside the gradient container (it exists for the
+   LaunchDeck logo badge), so it also hijacks these step rows and paints them
+   near-black. Their own `text-slate-100` then resolves through the light
+   palette remap to --ld-text (near black) -> black text on a black background.
+   In light mode the active row should simply match the other two steps: a
+   translucent light fill on the gradient with readable dark text. */
+:root.light .from-emerald-600.to-teal-950 .ld-auth-active-step {
+  background-color: color-mix(in oklab, var(--ld-dark-surface-text) 20%, transparent) !important;
+  color: var(--ld-dark-surface-text) !important;
+  border-color: color-mix(in oklab, var(--ld-dark-surface-text) 30%, transparent) !important;
+}
+:root.light .from-emerald-600.to-teal-950 .ld-auth-active-step .bg-emerald-400 {
+  background-color: var(--ld-success) !important;
+  color: var(--ld-dark-surface-text) !important;
+}
 :root.light .bg-blue-500\/10.text-blue-400 { background-color: var(--ld-badge-blue-bg); color: var(--ld-badge-blue-text); }
 :root.light .bg-emerald-500\/10.text-emerald-400 { background-color: var(--ld-badge-success-bg); color: var(--ld-badge-success-text); }
 :root.light .bg-amber-500\/10.text-amber-400 { background-color: var(--ld-badge-warning-bg); color: var(--ld-badge-warning-text); }
