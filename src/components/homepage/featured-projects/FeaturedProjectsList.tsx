@@ -8,16 +8,26 @@ interface FeaturedProjectsListProps {
 }
 
 export default function FeaturedProjectsList({ projects }: FeaturedProjectsListProps) {
+    // Badges sit on top of the thumbnail image, and that image is identical in
+    // both themes — so the badge colors must be identical too. These reuse the
+    // light-mode badge palette (opaque pastel chips) unconditionally, including
+    // in dark mode, instead of the translucent `*-500/10` fills + low-chroma
+    // text that washed out over photos. None of these utilities are in the
+    // theme's `:root.light` palette remap, so light mode renders exactly the
+    // same colors it did before.
     const statusColors = {
-        Idea: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-        Development: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-        Production: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+        Idea: "bg-blue-100 text-blue-700 border-blue-200",
+        Development: "bg-amber-100 text-amber-700 border-amber-200",
+        Production: "bg-emerald-100 text-emerald-700 border-emerald-200",
     };
 
+    // Difficulty chips have no border of their own; the subtle one added here is
+    // only visible on the light chip fills. Advanced keeps a solid red outline
+    // so it reads clearly on any thumbnail.
     const difficultyColors = {
-        Beginner: "bg-slate-800 text-slate-300",
-        Intermediate: "bg-slate-700 text-emerald-300",
-        Advanced: "bg-slate-900 border border-red-500/30 text-red-400",
+        Beginner: "bg-slate-800 text-slate-300 border border-slate-600",
+        Intermediate: "bg-slate-700 text-emerald-300 border border-slate-600",
+        Advanced: "bg-black text-red-600",
     };
 
     return (
